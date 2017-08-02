@@ -13,15 +13,16 @@ public class MainWithHawtio {
     public static void main(String args[]) throws Exception {
         CamelContext context = new DefaultCamelContext();
         try {
-            context.addComponent("activemq", ActiveMQComponent.activeMQComponent("tcp://localhost:61616"));
+            context.addComponent("activemq", ActiveMQComponent.activeMQComponent("tcp://10.221.198.153:61616"));
             context.addRoutes(new RouteTest());
             context.start();
 
             Main main = new Main();
-            main.setWar("hawtio.war");
-
+            main.setWar("hawtio-default-1.4.68.war");
+            System.setProperty("hawtio.authenticationEnabled", "true");
             main.run();
-
+            main.showOptions();
+            System.out.println(System.getProperty("jetty.home"));
             TimeUnit.MINUTES.sleep(20);
         }finally {
             context.stop();
