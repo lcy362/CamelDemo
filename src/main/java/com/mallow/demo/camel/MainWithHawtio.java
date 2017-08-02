@@ -13,7 +13,7 @@ public class MainWithHawtio {
     public static void main(String args[]) throws Exception {
         CamelContext context = new DefaultCamelContext();
         try {
-            context.addComponent("activemq", ActiveMQComponent.activeMQComponent("tcp://10.221.198.153:61616"));
+            context.addComponent("activemq", ActiveMQComponent.activeMQComponent("tcp://localhost:61616"));
             context.addRoutes(new RouteTest());
             context.start();
 
